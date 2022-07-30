@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, {{current_user.name}}!
+</h1>
+  <form action="/todo_post" method="POST">
+    <input type="text" name="todo" placeholder="Todo">
+    <input type="submit" value="Save">
+  </form>
+  {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table" border="1">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Todo</th>
+              <th>Created</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for todo in todos %}
+            <tr>
+              <td>{{ todo.user.name}}</td>
+              <td>{{ todo.text }}</td>
+              <td>{{ todo.date_created }}</td>
+              <td><a href="{{ url_for('main.update_todo',id=todo.id )}}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{{ url_for('main.delete_todo',id=todo.id )}}" class="btn btn-warning btn-sm">Delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+  </div>
+  
+{% endblock %}

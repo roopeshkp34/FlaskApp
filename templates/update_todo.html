@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+    Update, {{todo.text}}!
+    <form action="/update_todo/{{ todo.id }}" method="POST">
+        <input type="text" name="todo" placeholder="Todo" value="{{ todo.text }}">
+        <input type="submit" value="Update">
+      </form>
+  </h1>
+
+{% endblock %}
