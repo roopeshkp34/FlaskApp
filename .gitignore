@@ -9,6 +9,7 @@ __pycache__/*
 *.so
 *.pyc
 *.sqlite3
+*.sqlite
 documents/*.*
 extractors/*.*
 
